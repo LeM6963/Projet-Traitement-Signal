@@ -39,7 +39,7 @@ extracttheweekd2=extract_empreinte(musique2)
 print(extracttheweekd2)
 
 
-#affichage du spectre avec matplotlib
+#-------------affichage du spectre avec matplotlib----------------------------------------------------------------------
 def afficher_spectrogramme(audio, taille_fenetre=2048, pas_saut=512):
     # Charge l'audio
     signal, sr = lb.load(audio)
@@ -61,7 +61,7 @@ def afficher_spectrogramme(audio, taille_fenetre=2048, pas_saut=512):
     plt.show()
 
 
-#compare deux empreintes de son et renvoie vrai si ils sont identiques
+#---------------compare deux empreintes de son et renvoie vrai s'ils sont identiques-----------------------------------------
 def comparer_empreintesOneVSOne(empreinte1, empreinte2, margeerreur=0.01):
     # Ajuster la taille des empreintes pour qu'elles soient identiques
     min_len = min(len(empreinte1), len(empreinte2))
@@ -77,7 +77,7 @@ def comparer_empreintesOneVSOne(empreinte1, empreinte2, margeerreur=0.01):
     else :
         return False
 
-#compare une musique d'entrée avec tout les fichiers .mp3 et .wav des sous dossiers du dossier choisi
+#-------------compare une musique d'entrée avec tout les fichiers .mp3 et .wav des sous dossiers du dossier choisi--------------
 def comparer_empreintesData(empreinte_choisie, dossier_base, marge_erreur=0.01):
 
     # Parcourt tous les sous-dossiers et fichiers dans le dossier principal
@@ -107,6 +107,7 @@ def comparer_empreintesData(empreinte_choisie, dossier_base, marge_erreur=0.01):
     print("Aucune correspondance trouvée dans le dossier.")
     return None  # Aucun fichier similaire trouvé
 
+#----------------------------------------Exemples & Tests --------------------------------------------------------------------
 # Exemple utilisation affichage spectogramme :
 musique = "The Weeknd.mp3"
 afficher_spectrogramme(musique)
@@ -135,18 +136,6 @@ if fichier_similaire:
 else:
     print("Aucune musique similaire trouvée dans la base de données.")
 
-
-#exemple2 BDD
-empreinte_entree = extract_empreinte("The Weeknd.mp3")
-# Chemin du dossier contenant les empreintes de la base de données
-dossier_base = r"H:\Documents\ING2 CYTECH\ING2-TraitementSignal\Projet Traitement Signal\Data\genres_original"
-# Appel de la fonction
-fichier_similaire = comparer_empreintesData(empreinte_entree, dossier_base)
-nom_fichier = os.path.basename(fichier_similaire)
-if fichier_similaire:
-    print(f"Musique similaire trouvée : {nom_fichier}")
-else:
-    print("Aucune musique similaire trouvée dans la base de données.")
 
 #exemple2 BDD
 empreinte_entree = extract_empreinte("The Weeknd.mp3")
